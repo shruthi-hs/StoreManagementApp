@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StoreManagementApp.Views.StaffDetailPage"
+             Title="{Binding Title}">
+    
+    <ContentPage.Content>
+        <RelativeLayout>
+            <Grid IsVisible="{Binding IsDetail,Mode=TwoWay}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="6*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.08*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="0.09*"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="1" Grid.Row="1" Text="First Name:" FontSize="Medium" FontAttributes="Bold" />
+            <Label Grid.Column="2" Grid.Row="1" Text="{Binding staff.FirstName}" d:Text="First Name" FontSize="Small"/>
+
+            <Label Grid.Column="1" Grid.Row="2" Text="Last Name:" FontSize="Medium" FontAttributes="Bold"  />
+            <Label Grid.Column="2" Grid.Row="2" Text="{Binding staff.Lastname}" d:Text="Last Name" FontSize="Small"/>
+
+            <Label Grid.Column="1" Grid.Row="3" Text="Email:" FontSize="Medium" FontAttributes="Bold"  />
+            <Label Grid.Column="2" Grid.Row="3" Text="{Binding staff.Email}" d:Text="Email" FontSize="Small"/>
+
+            <Label Grid.Column="1" Grid.Row="4"  Text="Phone:" FontSize="Medium" FontAttributes="Bold"  />
+            <Label Grid.Column="2" Grid.Row="4"  Text="{Binding staff.Phone}" d:Text="Phone" FontSize="Small"/>
+
+            <Label Grid.Column="1" Grid.Row="5" Text="Department:" FontSize="Medium" FontAttributes="Bold"  />
+            <Label Grid.Column="2" Grid.Row="5" Text="{Binding staff.Department}" d:Text="Department" FontSize="Small"/>
+
+        </Grid>
+
+            <StackLayout IsVisible="{Binding IsDetail,Mode=TwoWay}" Orientation="Horizontal" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=.3}"
+                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0.08}"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.90 }"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.08}">
+                <Button Text="Edit" Command="{Binding EditStaffCommand}"></Button>
+                <Button Text="Delete" Clicked="DeleteStaff_Clicked"></Button>
+                <Button Text="Cancel" Clicked="Cancel_Clicked"></Button>
+        </StackLayout>
+
+
+            <StackLayout Spacing="20" Padding="15" IsVisible="{Binding IsEdit,Mode=TwoWay}">               
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                        <ColumnDefinition Width="3*"></ColumnDefinition>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.08*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="0.09*"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="1" Grid.Row="1" Text="First Name:" FontSize="Medium" FontAttributes="Bold" />
+                    <Editor Grid.Column="2" Grid.Row="1" Text="{Binding staff.FirstName}" d:Text="First Name" FontSize="Small" Margin="5"/>
+
+                    <Label Grid.Column="1" Grid.Row="2" Text="Last Name:" FontSize="Medium" FontAttributes="Bold"  />
+                    <Editor Grid.Column="2" Grid.Row="2" Text="{Binding staff.Lastname}" d:Text="Last Name" FontSize="Small" Margin="5"/>
+
+                    <Label Grid.Column="1" Grid.Row="3" Text="Email:" FontSize="Medium" FontAttributes="Bold"  />
+                    <Editor Grid.Column="2" Grid.Row="3" Text="{Binding staff.Email}" d:Text="Email" FontSize="Small" Margin="5"/>
+
+                    <Label Grid.Column="1" Grid.Row="4"  Text="Phone:" FontSize="Medium" FontAttributes="Bold"  />
+                    <Editor Grid.Column="2" Grid.Row="4"  Text="{Binding staff.Phone}" d:Text="Phone" FontSize="Small" Margin="5"/>
+
+                    <Label Grid.Column="1" Grid.Row="5" Text="Department:" FontSize="Medium" FontAttributes="Bold"  />
+                    <Editor Grid.Column="2" Grid.Row="5" Text="{Binding staff.Department}" d:Text="Department" FontSize="Small" Margin="5"/>
+
+                </Grid>
+
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding IsEdit,Mode=TwoWay}" RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height, Factor=.5}"
+                 RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=0.08}"
+                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width,Factor=.90 }"
+                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height,Factor=.08}">
+
+                <Button Text="Update" Clicked="UpdateStaff_Clicked"></Button>
+                <Button Text="Cancel" Clicked="Cancel_Clicked"></Button>
+            </StackLayout>
+
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="StoreManagementApp.Views.StockPage"
+             Title="{Binding Title}">
+    
+    <RefreshView IsRefreshing="{Binding IsBusy, Mode=TwoWay}" Command="{Binding LoadItemsCommand}">
+        <CollectionView x:Name="ItemsCollectionView"
+                ItemsSource="{Binding Product}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout x:Name="Item" Padding="30,20,0,20" Orientation="Vertical" >
+                        <Label Text="Product Name" FontSize="Medium" FontAttributes="Bold"/>
+                        <Label Text="{Binding ProductName}" 
+                                d:Text="{Binding .}"
+                                LineBreakMode="NoWrap" 
+                                Style="{DynamicResource ListItemTextStyle}" 
+                                FontSize="16" />
+
+                        <Label Text="Product Description" FontSize="Medium" FontAttributes="Bold"/>
+                        <Label Text="{Binding Description}" 
+                                d:Text="Item descripton"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="16" />
+
+                        <Label Text="Quantity" FontSize="Medium" FontAttributes="Bold"/>
+                        <Label Text="{Binding Stocks[0].Quantity}" 
+                                d:Text="Quantity"
+                                LineBreakMode="NoWrap"
+                                Style="{DynamicResource ListItemDetailTextStyle}"
+                                FontSize="16" />
+                        
+                        <Button Text="view" Clicked="View_Clicked" WidthRequest="100" HorizontalOptions="StartAndExpand"></Button>
+
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
